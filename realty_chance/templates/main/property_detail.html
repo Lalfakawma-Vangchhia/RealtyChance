@@ -1,0 +1,13 @@
+<h2>{{ property.title }}</h2>
+
+{% if property.image %}
+  <img src="{{ property.image.url }}" width="300" />
+{% endif %}
+
+<p><strong>Location:</strong> {{ property.city }}, {{ property.state }}</p>
+<p><strong>Type:</strong> {{ property.property_type }}</p>
+<p><strong>Address:</strong> {{ property.address }}</p>
+<p><strong>Description:</strong> {{ property.description }}</p>
+<p><em>Listed on {{ property.listed_on }}</em></p>
+
+<a href="{% url 'main:dashboard' %}">← Back to Dashboard</a>
