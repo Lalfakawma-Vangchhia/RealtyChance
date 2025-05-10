@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}My Properties | Reality Chance{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">My Properties</h2>
+
+    {% if properties %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for prop in properties %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    {% if prop.image %}
+                        <img src="{{ prop.image.url }}" class="card-img-top" alt="{{ prop.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prop.title }}</h5>
+                        <p class="card-text">{{ prop.city }}, {{ prop.state }}</p>
+                        <a href="{% url 'main:property_detail' prop.id %}" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            You haven't posted any properties yet. <a href="{% url 'main:upload' %}">Post one now</a>.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
