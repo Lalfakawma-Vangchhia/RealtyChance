@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome | Reality Chance{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h2 class="mb-4 text-center">Latest Listings</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for prop in properties %}
+        <div class="col">
+            <div class="card h-100">
+                {% if prop.image %}
+                <img src="{{ prop.image.url }}" class="card-img-top" alt="{{ prop.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ prop.title }}</h5>
+                    <p class="card-text">{{ prop.city }}, {{ prop.state }}</p>
+                    <a href="{% url 'main:property_detail' prop.id %}" class="btn btn-outline-primary btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
